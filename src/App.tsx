@@ -6,6 +6,10 @@ function App() {
 
   const [timeLeft, setTimeLeft] = useState(25*60);
   const [isRunning, setIsRunning] = useState(false);
+  const [isBreak, setIsBreak] = useState(false);
+
+  const WORK_TIME = 25 * 60; // 1500 seconds
+  const BREAK_TIME = 5 * 60;  // 300 seconds
 
   useEffect( () => {
     let timer:NodeJS.Timeout;
@@ -30,12 +34,18 @@ function App() {
     // Returns as "02:05"
   };
 
+  const switchMode = (breakMode: boolean) => {
+    setIsBreak(breakMode);
+    setIsRunning(false);
+    setTimeLeft(breakMode ? BREAK_TIME : WORK_TIME);
+  }
+
   const handleClick = () => {
     if(!isRunning) {
       setIsRunning(true);
     } else {
       setIsRunning(false);
-      setTimeLeft(25*60);
+      setTimeLeft(isBreak ? BREAK_TIME : WORK_TIME);
     }
   }
 
@@ -50,10 +60,10 @@ function App() {
     
     <div className="home-content">
       <div className="home-controls">
-        <button className="image-button">
+        <button className="image-button" onClick={ () => switchMode(false)}>
           Work
         </button>
-        <button className="image-button">
+        <button className="image-button" onClick={ () => switchMode(true)}>
           Break
         </button>
       </div>
