@@ -19,7 +19,7 @@ function createMainWindow() {
         slashes: true,
     });
 
-    mainWindow, loadURL(startURL); // Load app into electron window
+    mainWindow.loadURL(startURL); // Load app into electron window
 }
 
 app.whenReady().then(createMainWindow);
