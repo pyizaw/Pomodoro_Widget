@@ -22,3 +22,16 @@ To run this project locally, you will need Node.js installed on your computer.
 Open your terminal in the project directory and run:
 ```bash
 npm install
+```
+
+###  2. Start the React Development Server
+```bash
+npm start
+```
+This starts the web server on http://localhost:3000.
+
+###  3. Launch the Desktop App
+```bash
+npm run build
+npm run electron
+```
