@@ -4,26 +4,31 @@ import './App.css';
 
 function App() {
 
+  // Various States
   const [timeLeft, setTimeLeft] = useState(25*60);
   const [isRunning, setIsRunning] = useState(false);
   const [isBreak, setIsBreak] = useState(false);
   const [encouragement, setEncouragement] = useState("");
 
+  // Encouragement messages
   const cheerMessages = [
     "You can do it!",
     "Stay focused!",
     "Study Study Study!!"
   ];
 
+  // Break Messages
   const breakMessages = [
     "Stay hydrated!",
     "Snack time!",
     "nap... soon..."
   ];
 
+  // Set constant for Work and Break timing (Consistency)
   const WORK_TIME = 25 * 60; // 1500 seconds
   const BREAK_TIME = 5 * 60;  // 300 seconds
 
+  // To automatically change messages every 4 seconds
   useEffect(() => {
     let messageInterval: NodeJS.Timeout;
 
@@ -43,6 +48,7 @@ function App() {
     return() => clearInterval(messageInterval);
   }, [isRunning, isBreak]);
 
+  // Countdown function
   useEffect( () => {
     let timer:NodeJS.Timeout;
     if (isRunning && timeLeft > 0) {
@@ -65,7 +71,8 @@ function App() {
     return `${m}:${s}`;
     // Returns as "02:05"
   };
-
+  
+  // Changing between Work and Break Mode
   const switchMode = (breakMode: boolean) => {
     setIsBreak(breakMode);
     setIsRunning(false);
