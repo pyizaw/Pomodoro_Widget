@@ -7,9 +7,41 @@ function App() {
   const [timeLeft, setTimeLeft] = useState(25*60);
   const [isRunning, setIsRunning] = useState(false);
   const [isBreak, setIsBreak] = useState(false);
+  const [encouragement, setEncouragement] = useState("");
+
+  const cheerMessages = [
+    "You can do it!",
+    "Stay focused!",
+    "Study Study Study!!"
+  ];
+
+  const breakMessages = [
+    "Stay hydrated!",
+    "Snack time!",
+    "nap... soon..."
+  ];
 
   const WORK_TIME = 25 * 60; // 1500 seconds
   const BREAK_TIME = 5 * 60;  // 300 seconds
+
+  useEffect(() => {
+    let messageInterval: NodeJS.Timeout;
+
+    if(isRunning) {
+      const messages = isBreak? breakMessages : cheerMessages;
+      setEncouragement(messages[0]);
+      let index = 1
+
+      messageInterval = setInterval (() => {
+        setEncouragement(messages[index]);
+        index = (index +1) % messages.length;
+      },4000);
+    } else {
+      setEncouragement("");
+    }
+
+    return() => clearInterval(messageInterval);
+  }, [isRunning, isBreak]);
 
   useEffect( () => {
     let timer:NodeJS.Timeout;
@@ -68,8 +100,8 @@ function App() {
         </button>
       </div>
 
-      <p>
-        You can do it!
+      <p className = {'encouragement-text ${!isRunning ? "hidden" : ""}'}>
+        { encouragement }
       </p>
 
       <h1 className="home-timer">{formatTime(timeLeft)}</h1>
