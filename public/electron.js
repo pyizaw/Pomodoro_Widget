@@ -8,8 +8,8 @@ function createMainWindow() {
     // Main window
     const mainWindow = new BrowserWindow ({
         title: 'Working Time!',
-        width: 400,
-        height: 430,
+        width: 480,
+        height: 570,
     });
 
     const startURL = url.format ({
