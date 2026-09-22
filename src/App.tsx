@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import work_background from './Assets/work_background.png';
+
 function App() {
 
   // Various States
@@ -88,9 +90,12 @@ function App() {
     }
   }
 
+  const containerClass = `home-container ${isRunning ? "work_background" : "break_background"}`;
+
   return (
     //Requires something to wrap (Syntax)
-    <div style={{position: 'relative'}}>
+    <div className="home-container"
+      style={{ backgroundImage: `url(${work_background})` }}>
     <div>
       <button className="closeButton">
         Close
@@ -98,6 +103,7 @@ function App() {
     </div>
     
     <div className="home-content">
+      <div className="home-timer"></div>
       <div className="home-controls">
         <button className="image-button" onClick={ () => switchMode(false)}>
           Work
