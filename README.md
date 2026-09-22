@@ -35,3 +35,7 @@ This starts the web server on http://localhost:3000.
 npm run build
 npm run electron
 ```
+
+## About
+Assets generated with **Pixel Room Creator demo (Unity)**. 
+All credit to the original creators of the demo.
