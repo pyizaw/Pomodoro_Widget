@@ -31,7 +31,7 @@ body {
   justify-content: space-between;
   height: 100%;
   width: 100%;
-  padding-top: 60px;
+  padding-top: 10px;
   padding-bottom: 20px;
   box-sizing: border-box;
 }
@@ -40,9 +40,7 @@ body {
   font-size: 20px;
   color: #b76985;
   position: absolute;
-  margin-top: 355px;
-  animation: fadeIn 1s ease-in-out;
-  transition: opacity 0.8s ease;
+  top: 430px;
   background: #fff;
   border: 2px solid #0000001f;
   padding-top: 5px;
@@ -54,13 +52,12 @@ body {
 
 .encouragement-text.hidden {
   opacity: 0;
-  transition: opacity 0.8s ease;
 }
 
 .home-controls {
   display: flex;
   justify-content: center;
-  margin: 0;
+  margin-top: 490px;
 }
 
 .image-button {
@@ -77,33 +74,33 @@ body {
   position: absolute;
   font-size: 48px;
   color: #8b4a62;
-  margin-top: 400px;
+  top: 10px;
+  left: 170px;
 }
 
-.gif-image {
-  height:100px;
-}
 
 .home-button {
+  position: absolute;
+  top: 45px;
+  left: 100px;
   background: none;
   border: none;
   cursor: pointer;
 }
 
 .home-button img {
-  width: 60px;
+  width: 40px;
 }
 
 .close-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  margin-top: 20px;
+  left: 420px;
   background: none;
   border: none;
   cursor: pointer;
 }
 
 .close-button img {
-  width: 24px;
-  height: 24px;
+  width: 30px;
 }

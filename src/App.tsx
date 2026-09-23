@@ -4,6 +4,12 @@ import './App.css';
 
 import work_background from './Assets/work_background.png';
 import break_background from './Assets/break_background.png';
+import workBtnClicked from "./Assets/work-clicked.png";
+import workBtn from "./Assets/work.png";
+import breakBtnClicked from "./Assets/break-clicked.png";
+import breakBtn from "./Assets/break.png";
+import closeBtn from "./Assets/close.png";
+import playImg from "./Assets/play.png";
 
 function App() {
     // Encouragement messages
@@ -17,6 +23,8 @@ function App() {
   const [isRunning, setIsRunning] = useState(false);
   const [isBreak, setIsBreak] = useState(false);
   const [encouragement, setEncouragement] = useState("You Can Do It!");
+  const [breakButtonImage, setBreakButtonImage] = useState(breakBtn);
+  const [workButtonImage, setWorkButtonImage] = useState(workBtn);
 
   // Set constant for Work and Break timing (Consistency)
   const WORK_TIME = 25 * 60; // 1500 seconds
@@ -67,6 +75,8 @@ function App() {
   const switchMode = (breakMode: boolean) => {
     setIsBreak(breakMode);
     setIsRunning(false);
+    setBreakButtonImage(breakMode ? breakBtnClicked : breakBtn);
+    setWorkButtonImage(breakMode ? workBtn : workBtnClicked);
     setTimeLeft(breakMode ? BREAK_TIME : WORK_TIME);
   }
 
@@ -86,19 +96,20 @@ function App() {
     <div className="home-container"
       style={{ backgroundImage: `url(${isBreak ? break_background : work_background})`, backgroundSize: "cover", backgroundPosition: "center>"}}>
     <div>
-      <button className="closeButton">
-        Close
+      <button className="close-button">
+        <img src={closeBtn} alt="Close" />
       </button>
     </div>
     
     <div className="home-content">
       <div className="home-timer"></div>
+
       <div className="home-controls">
-        <button className="image-button" onClick={ () => switchMode(false)}>
-          Work
+        <button className="image-button" onClick={() => switchMode(false)}>
+          <img src={workButtonImage} alt="Work" />
         </button>
-        <button className="image-button" onClick={ () => switchMode(true)}>
-          Break
+        <button className="image-button" onClick={() => switchMode(true)}>
+          <img src={breakButtonImage} alt="Break" />
         </button>
       </div>
 
@@ -109,7 +120,7 @@ function App() {
       <h1 className="home-timer">{formatTime(timeLeft)}</h1>
 
       <button className='home-button' onClick={(handleClick)}>
-        Start
+        <img src={playImg} alt="Start" />
       </button>
     </div>
     </div>
