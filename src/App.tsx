@@ -6,26 +6,17 @@ import work_background from './Assets/work_background.png';
 import break_background from './Assets/break_background.png';
 
 function App() {
+    // Encouragement messages
+  const cheerMessages = ["You can do it!", "Stay focused!", "Study Study Study!!"];
+
+  // Break Messages
+  const breakMessages = ["Stay hydrated!", "Snack time!", "nap... soon..."];
 
   // Various States
   const [timeLeft, setTimeLeft] = useState(25*60);
   const [isRunning, setIsRunning] = useState(false);
   const [isBreak, setIsBreak] = useState(false);
-  const [encouragement, setEncouragement] = useState("");
-
-  // Encouragement messages
-  const cheerMessages = [
-    "You can do it!",
-    "Stay focused!",
-    "Study Study Study!!"
-  ];
-
-  // Break Messages
-  const breakMessages = [
-    "Stay hydrated!",
-    "Snack time!",
-    "nap... soon..."
-  ];
+  const [encouragement, setEncouragement] = useState("You Can Do It!");
 
   // Set constant for Work and Break timing (Consistency)
   const WORK_TIME = 25 * 60; // 1500 seconds
@@ -33,22 +24,19 @@ function App() {
 
   // To automatically change messages every 4 seconds
   useEffect(() => {
-    let messageInterval: NodeJS.Timeout;
+    let messageInterval;
 
-    if(isRunning) {
-      const messages = isBreak? breakMessages : cheerMessages;
-      setEncouragement(messages[0]);
-      let index = 1
+    if (isRunning) {
+      const messages = isBreak ? breakMessages : cheerMessages;
+      setEncouragement(messages[0]); // show immediately
+      let index = 1;
 
-      messageInterval = setInterval (() => {
+      messageInterval = setInterval(() => {
         setEncouragement(messages[index]);
-        index = (index +1) % messages.length;
-      },4000);
-    } else {
-      setEncouragement("");
+        index = (index + 1) % messages.length;
+      }, 4000);
     }
-
-    return() => clearInterval(messageInterval);
+    return () => clearInterval(messageInterval);
   }, [isRunning, isBreak]);
 
   // Countdown function
@@ -114,8 +102,8 @@ function App() {
         </button>
       </div>
 
-      <p className = {'encouragement-text ${!isRunning ? "hidden" : ""}'}>
-        { encouragement }
+      <p className={`encouragement-text ${!isRunning ? "hidden" : ""}`}>
+        {encouragement}
       </p>
 
       <h1 className="home-timer">{formatTime(timeLeft)}</h1>
