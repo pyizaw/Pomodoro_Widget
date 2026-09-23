@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import work_background from './Assets/work_background.png';
+import break_background from './Assets/break_background.png';
 
 function App() {
 
@@ -95,7 +96,7 @@ function App() {
   return (
     //Requires something to wrap (Syntax)
     <div className="home-container"
-      style={{ backgroundImage: `url(${work_background})` }}>
+      style={{ backgroundImage: `url(${isBreak ? break_background : work_background})`, backgroundSize: "cover", backgroundPosition: "center>"}}>
     <div>
       <button className="closeButton">
         Close
